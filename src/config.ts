@@ -160,12 +160,12 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Moment | 片刻", // 主页横幅主标题
+			title: "Moment|片刻", // 主页横幅主标题
 
 			subtitle: [
 				"人总是这样 从不记万般好 只记一时错",
 				"过去的往事如烟 我们都有崭新的明天",
-    "时间是个庸医 自称包治百病",
+                "时间是个庸医 自称包治百病",
 				"待到苦尽甘来日 生吃黄莲也算甜",
 				"希望一声不响的日子 换来的是一个好的转弯",
 				"我适应聚少离多的日子 至此山高水长 由我一人生长",
@@ -360,8 +360,8 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "まつざか ゆき",
-	bio: "世界は大きい、君は行かなければならない",
+	name: "枪宴",
+	bio: "⁺˚ ♰ ༝ 对小慧重度依赖症₊˚♰  ༝",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
 		speed: 80, // 打字速度（毫秒）
