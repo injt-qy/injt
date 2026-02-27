@@ -160,7 +160,7 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Moment|片刻", // 主页横幅主标题
+			title: "Void | 空序", // 主页横幅主标题
 
 			subtitle: [
 				"人总是这样 从不记万般好 只记一时错",
