@@ -1,49 +1,13 @@
+## 🌌 我始终是自己世界里的留白者，不填满，不拥挤，与世界保持着恰到好处的分寸感。不刻意融入喧嚣，也不刻意隔绝烟火，既不做迎合世界的群居者，也不做封闭自我的孤独者。我信奉“半醒半醉”的人生状态，清醒地认知自我，从容地接纳世界，不把自己活成他人期待的模板，也不把生活过成密不透风的牢笼。真正的高级，从不是刻意标榜的与众不同，而是在世俗的标准里，守住一份独属于自己的松弛与清醒——不被定义，不被束缚，不慌不忙，自有章法。
 
-This website is built with the **Astro** framework using the [Mizuki](https://github.com/matsuzaka-yuki/mizuki) theme.
+### 🌿 我从不急于向世界证明自己，也不执着于得到所有人的认可。深知人生本就是一场孤独的远行，不必强迫他人懂我，也不必勉强自己合群。那些独处的时光，不是逃避，而是给灵魂留白；那些不被理解的时刻，不是遗憾，而是自我沉淀的契机。我曾在得失中学会取舍，在喧嚣中学会抽离，在沉淀中懂得：最好的状态，是内心有山海，行事有分寸，待人有温度，独处有力量。
+### 我偏爱“慢慢来”的节奏，不追逐速成的光芒，不贪恋短暂的浮华。对待生活，不敷衍、不盲从，以敬畏之心接纳所有馈赠，以从容之心面对所有遗憾；对待自我，不苛责、不内耗，允许自己有迷茫，允许自己有瑕疵，在自省中迭代，在沉淀中成长。我始终觉得，灵魂的质感，从不是靠外在的标签堆砌，而是靠岁月的沉淀与自我的丰盈，那些沉默的坚持，那些不动声色的努力，终会成为独属于我的底气。
 
-::github{repo="matsuzaka-yuki/Mizuki"}
+### 💫 我与世界的相处，是“不远不近”的温柔。不讨好谁，不依附谁，也不辜负谁；不干预他人的世界，也不轻易让他人闯入我的内核。我有自己的坚守与热爱，有自己的底线与分寸，既可以在人间烟火中从容前行，也可以在独处时光里安然自处。我不追求“完美”，只追求“自在”；不追求“耀眼”，只追求“通透”，活成一束温和却有力量的光，不刺眼，却足以照亮自己的前路。
 
-## 🌟 Theme Features
+### 我始终认为，人生的真谛，从不是填满，而是留白。留一份清醒给自己，不困于过往，不忧于未来；留一份温柔给世界，不苛责他人，不勉强自己；留一份期待给时光，不急于求成，不贪多求全。每个人都有自己的活法，不必追赶别人的脚步，不必复刻他人的轨迹，在自己的节奏里，接纳所有，沉淀所有，成长所有，慢慢活成自己最舒服的模样。
 
-### 🎨 Design & User Experience
-- **Modern & Elegant Design** - Clean, minimalist interface with beautiful typography
-- **Fully Responsive** - Optimized for all devices from mobile to desktop
-- **Dark/Light Mode** - Automatic theme switching with smooth transitions
-- **Beautiful Typography** - Enhanced readability with JetBrains Mono font
-- **Smooth Animations** - Fluid page transitions and interactive elements
-
-### 🔍 Content & Search
-- **Advanced Search** - Powered by [Pagefind](https://pagefind.app/) for fast, accurate results
-- **Enhanced Markdown** - Extended syntax with code highlighting and math support
-- **Interactive Table of Contents** - Auto-scroll navigation for long articles
-- **RSS Feed Generation** - Stay updated with automatic feed generation
-- **Reading Time Estimation** - Know how long articles take to read
-- **Post Categorization** - Organize content with tags and categories
-
-
-
-### 📱 Special Pages
-- **Anime Tracking Page** - Track your anime watching progress with ratings
-- **Friends Links Page** - Showcase friend websites with beautiful cards
-- **Diary/Moments Page** - Share life moments like social media posts
-- **Archive Page** - Organized timeline view of all posts
-- **About Page** - Customizable personal introduction (this page!)
-
-### 🛠 Technical Features
-- **Enhanced Code Blocks** - Powered by [Expressive Code](https://expressive-code.com/)
-- **Math Support** - LaTeX rendering with KaTeX for mathematical expressions
-- **Image Optimization** - PhotoSwipe gallery with lazy loading
-- **SEO Optimized** - Built-in sitemap and meta tags for better search visibility
-- **Performance Optimized** - Fast loading with caching and optimization
-- **Comment System Ready** - Integration support for Twikoo comments
-
-### 🎯 Advanced Markdown Features
-- **Callouts & Admonitions** - Beautiful info boxes with `> [!NOTE]`, `> [!TIP]`, `> [!WARNING]`
-- **Mathematical Equations** - Write LaTeX math with `$inline$` and `$$block$$` syntax
-- **GitHub Cards** - Embed repository cards with `::github{repo="user/repo"}`
-- **Syntax Highlighting** - Advanced code highlighting with line numbers
-- **Copy Code Buttons** - Easy code copying functionality
-
+### 🌟 往后，依旧保持这份留白的智慧，与自我和解，与世界温柔相处。不卑不亢，不慌不忙，清醒自持，温柔有骨；不被情绪左右，不被世俗定义，在留白中沉淀力量，在从容中奔赴远方。愿历经千帆，依旧心怀热望，眼有星辰，心有山海；愿不负时光，不负自己，在独属于我的节奏里，慢慢生长，静静发光，活成一场不慌不忙的圆满。
 ---
 
-*Built with ❤️ using Astro and inspired by modern web design principles.*
+*守本心而不盲从，安岁月而不浮躁，不慌不忙地成长，不疾不徐地沉淀.*
