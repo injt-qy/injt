@@ -454,7 +454,7 @@ export const announcementConfig: AnnouncementConfig = {
 	link: {
 		enable: true, // 启用链接
 		text: "免责声明", // 链接文本
-		url: "/utils/免责声明.html", // 链接 URL
+		url: "https://github.com/injt-qy/Mizuki/blob/ba3fc98ab2a849ae2f009805ba754db5b5b28546/src/utils/%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E.html", // 链接 URL
 		external: false, // 内部链接
 	},
 };
