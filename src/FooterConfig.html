@@ -1,18 +1,32 @@
-<span style="display: inline-block;
-padding: 5px 12px;
-border-radius: 30px;
-font-size: 12px;
-color: #fff;
-background: linear-gradient(90deg, #ff3c38, #ff8800, #00e7ff, #a742ff);
-background-size: 400% 400%;
-animation: rgbGradient 3.5s linear infinite;
-box-shadow: 0 0 8px rgba(255,255,255,0.2);">
-枪宴云
-</span>
+<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 10px 0;">
+
+  <!-- 1. 紫粉渐变 -->
+  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
+  background: linear-gradient(90deg, #1a1a2e, #7209b7, #c918c9, #1a1a2e);
+  background-size: 400% 400%; animation: rgbFlow 6s ease infinite;">
+  枪宴云
+  </span>
+
+  <!-- 2. 蓝青渐变 -->
+  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
+  background: linear-gradient(90deg, #1a1a2e, #0077b6, #00b4d8, #1a1a2e);
+  background-size: 400% 400%; animation: rgbFlow 6.5s ease infinite;">
+  枪宴のBlog
+  </span>
+
+  <!-- 4. 青绿渐变 -->
+  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
+  background: linear-gradient(90deg, #1a1a2e, #007f5f, #55a630, #1a1a2e);
+  background-size: 400% 400%; animation: rgbFlow 7.5s ease infinite;">
+  © 2026
+  </span>
+
+</div>
 
 <style>
-@keyframes rgbGradient {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+@keyframes rgbFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 </style>
