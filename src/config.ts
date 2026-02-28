@@ -112,7 +112,7 @@ export const siteConfig: SiteConfig = {
 		// "mobile" = 仅在移动端显示
 		// "desktop" = 仅在桌面端显示
 		// "both" = 在所有设备上显示
-		showModeSwitchOnMobile: "desktop",
+		showModeSwitchOnMobile: "both",
 	},
 
 	banner: {
@@ -294,7 +294,7 @@ export const navBarConfig: NavBarConfig = {
                    icon: "fa7-brands:telegram"
                 },
 				{
-					name: "discord",
+					name: "Discord",
 					url: "https://discord.gg/eEXa7app",
 					external: true,
 					icon: "mdi:discord",
@@ -381,29 +381,14 @@ export const profileConfig: ProfileConfig = {
 	},
 	links: [
 		{
-			name: "Bilibili",
-			icon: "fa7-brands:bilibili",
-			url: "https://space.bilibili.com/701864046",
-		},
-		{
-			name: "Gitee",
-			icon: "mdi:git",
-			url: "https://gitee.com/matsuzakayuki",
-		},
-		{
-			name: "GitHub",
-			icon: "fa7-brands:github",
-			url: "https://github.com/matsuzaka-yuki",
-		},
-		{
-			name: "Codeberg",
-			icon: "simple-icons:codeberg",
-			url: "https://codeberg.org",
+			name: "Telegram",
+			icon: "fa7-brands:telegram",
+			url: "https://t.me/injt8",
 		},
 		{
 			name: "Discord",
 			icon: "fa7-brands:discord",
-			url: "https://discord.gg/MqW6TcQtVM",
+			url: "https://discord.gg/eEXa7app",
 		},
 	],
 };
@@ -449,9 +434,9 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	twikoo: {
-		envId: "https://twikoo.vercel.app",
+		envId: "https://injt.zeabur.app",
 		lang: SITE_LANG,
 	},
 };
@@ -467,7 +452,7 @@ export const announcementConfig: AnnouncementConfig = {
 	link: {
 		enable: true, // 启用链接
 		text: "免责声明", // 链接文本
-		url: "/免责声明.html", // 链接 URL
+		url: "/免责声明.html/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
