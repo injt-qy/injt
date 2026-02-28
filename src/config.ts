@@ -288,22 +288,16 @@ export const navBarConfig: NavBarConfig = {
 			icon: "material-symbols:link",
 			children: [
 				{
-					name: "GitHub",
-					url: "https://github.com/matsuzaka-yuki/Mizuki",
-					external: true,
-					icon: "fa7-brands:github",
-				},
+                   name: "Telegram",
+                   url": "https://t.me/injt8",
+                   external: true,
+                   icon: "fa7-brands:telegram"
+                },
 				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/701864046",
+					name: "discord",
+					url: "https://discord.gg/eEXa7app",
 					external: true,
-					icon: "fa7-brands:bilibili",
-				},
-				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
-					external: true,
-					icon: "mdi:git",
+					icon: "mdi:discord",
 				},
 			],
 		},
