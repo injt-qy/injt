@@ -62,23 +62,31 @@
 </div>
 
 <script>
-// 改成你的网站上线时间
+// 👇 这里改成你网站真实的上线时间！
 const startTime = new Date("2022-03-03 00:00:00");
 
 function updateRunTime() {
   const now = new Date();
   const diff = (now - startTime) / 1000;
+
+  // 如果当前时间早于上线时间，就显示 0
+  if (diff < 0) {
+    document.getElementById("runTime").innerText = "本站已运行 0 天 0 时 0 分 0 秒";
+    return;
+  }
+
   const d = Math.floor(diff / 86400);
   const h = Math.floor((diff % 86400) / 3600);
   const m = Math.floor((diff % 3600) / 60);
   const s = Math.floor(diff % 60);
+
   const el = document.getElementById("runTime");
   if (el) {
     el.innerText = `本站已运行 ${d}天 ${h}时 ${m}分 ${s}秒`;
   }
 }
 
-// 确保DOM加载完成后再执行
+// 确保 DOM 加载完成后再执行
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", function() {
     updateRunTime();
