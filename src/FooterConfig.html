@@ -1,14 +1,130 @@
-<div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-size:12px;margin:10px 0">
-  <span style="color:#aaa">本站由</span>
-  <span style="color:#fff;animation:glowText 3s linear infinite">枪宴云</span>
-  <span style="display:inline-block;width:1px;height:12px;background:linear-gradient(180deg,#ff0080,#00bfff,#7e00ff);animation:lineFlow 3s linear infinite"></span>
-  <span style="color:#fff">持续驱动</span>
-  <span style="display:inline-block;width:1px;height:12px;background:linear-gradient(180deg,#ff0080,#00bfff,#7e00ff);animation:lineFlow 3s linear infinite"></span>
-  <span style="color:#ccc;animation:breath 3s ease-in-out infinite">© 2026</span>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>枪宴のBlog 页脚</title>
+<style>
+/* 页脚容器 */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  background: #111;
+}
+
+/* 胶囊徽标 —— 自适应文字大小 */
+.capsule-box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* 底部底色（让流光更透） */
+.capsule-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #222;
+  z-index: 0;
+}
+
+/* 超多色彩虹流光 */
+.rainbow-flow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    #ff3366, #ff6633, #ffcc00, #99ff33,
+    #33ff99, #33ccff, #6666ff, #cc33ff, #ff33cc
+  );
+  background-size: 1000% 100%;
+  animation: flow 10s linear infinite;
+  opacity: 0.4; /* 控制炫彩强度 */
+  z-index: 1;
+}
+
+/* 内容：图片 + 文字 */
+.logo-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 前面小图标 */
+.logo-content img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  /* 这里可以换成你的图片链接 */
+  content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyMkMtNy4yIDEyIDQgMiAxMiAxMnMyMC44LTggMTIgMTJ6Ii8+PC9zdmc+");
+}
+
+/* 流光动画 */
+@keyframes flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* 运行时间炫彩文字 */
+.run-time {
+  font-size: 14px;
+  background: linear-gradient(90deg,
+    #ff3366, #ff6633, #ffcc00, #99ff33,
+    #33ff99, #33ccff, #6666ff, #cc33ff, #ff33cc
+  );
+  background-size: 1000% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: flow 8s linear infinite;
+  white-space: nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========== 页脚核心代码 ========== -->
+<div class="footer">
+  <div class="capsule-box">
+    <div class="rainbow-flow"></div>
+    <div class="logo-content">
+      < img alt="icon">
+      枪宴のBlog
+    </div>
+  </div>
+
+  <div class="run-time" id="runTime">本站已运行 0 天 0 时 0 分 0 秒</div>
 </div>
 
-<style>
-@keyframes glowText{0%{text-shadow:0 0 5px #ff0080;}33%{text-shadow:0 0 5px #00bfff;}66%{text-shadow:0 0 5px #7e00ff;}100%{text-shadow:0 0 5px #ff0080;}}
-@keyframes lineFlow{0%{background-position:0 0;}100%{background-position:0 100%;}}
-@keyframes breath{0%,100%{opacity:.6;}50%{opacity:1;}}
-</style>
+<script>
+// 改成你的网站上线时间
+const startTime = new Date('2022-03-03 12:00:00');
+
+function updateRunTime() {
+  const now = new Date();
+  const diff = (now - startTime) / 1000;
+  const d = Math.floor(diff / 86400);
+  const h = Math.floor((diff % 86400) / 3600);
+  const m = Math.floor((diff % 3600) / 60);
+  const s = Math.floor(diff % 60);
+  document.getElementById('runTime').innerText =
+    `本站已运行 ${d} 天 ${h} 时 ${m} 分 ${s} 秒`;
+}
+updateRunTime();
+setInterval(updateRunTime, 1000);
+</script>
+
+</body>
+</html>
