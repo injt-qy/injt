@@ -289,7 +289,7 @@ export const navBarConfig: NavBarConfig = {
 			children: [
 				{
                    name: "Telegram",
-                   url": "https://t.me/injt8",
+                   url: "https://t.me/injt8",
                    external: true,
                    icon: "fa7-brands:telegram"
                 },
