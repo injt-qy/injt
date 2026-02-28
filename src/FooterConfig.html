@@ -1,32 +1,14 @@
-<div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 10px 0;">
-
-  <!-- 1. 紫粉渐变 -->
-  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
-  background: linear-gradient(90deg, #1a1a2e, #7209b7, #c918c9, #1a1a2e);
-  background-size: 400% 400%; animation: rgbFlow 6s ease infinite;">
-  枪宴云
-  </span>
-
-  <!-- 2. 蓝青渐变 -->
-  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
-  background: linear-gradient(90deg, #1a1a2e, #0077b6, #00b4d8, #1a1a2e);
-  background-size: 400% 400%; animation: rgbFlow 6.5s ease infinite;">
-  枪宴のBlog
-  </span>
-
-  <!-- 4. 青绿渐变 -->
-  <span style="display: inline-block; padding: 5px 14px; border-radius: 30px; font-size: 12px; color: #fff;
-  background: linear-gradient(90deg, #1a1a2e, #007f5f, #55a630, #1a1a2e);
-  background-size: 400% 400%; animation: rgbFlow 7.5s ease infinite;">
-  © 2026
-  </span>
-
+<div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-size:12px;margin:10px 0">
+  <span style="color:#aaa">本站由</span>
+  <span style="color:#fff;animation:glowText 3s linear infinite">热爱</span>
+  <span style="display:inline-block;width:1px;height:12px;background:linear-gradient(180deg,#ff0080,#00bfff,#7e00ff);animation:lineFlow 3s linear infinite"></span>
+  <span style="color:#fff">持续驱动</span>
+  <span style="display:inline-block;width:1px;height:12px;background:linear-gradient(180deg,#ff0080,#00bfff,#7e00ff);animation:lineFlow 3s linear infinite"></span>
+  <span style="color:#ccc;animation:breath 3s ease-in-out infinite">© 2026</span>
 </div>
 
 <style>
-@keyframes rgbFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+@keyframes glowText{0%{text-shadow:0 0 5px #ff0080;}33%{text-shadow:0 0 5px #00bfff;}66%{text-shadow:0 0 5px #7e00ff;}100%{text-shadow:0 0 5px #ff0080;}}
+@keyframes lineFlow{0%{background-position:0 0;}100%{background-position:0 100%;}}
+@keyframes breath{0%,100%{opacity:.6;}50%{opacity:1;}}
 </style>
